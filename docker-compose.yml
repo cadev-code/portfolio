@@ -1,0 +1,31 @@
+services:
+  server:
+    build: ./server
+    image: server_portfolio
+    container_name: server
+    ports:
+      - 8082:8082
+    volumes:
+      - ./server:/app
+      # el volumen node_modules se vuelve anonimo, lo que evita reemplazarlo con la carpeta local
+      - /app/node_modules
+    networks:
+      - portfolio_network
+  client:
+    build: ./client
+    image: client_portfolio
+    container_name: client
+    ports:
+      - 5173:5173
+    volumes:
+      - ./client:/app
+      # el volumen node_modules se vuelve anonimo, lo que evita reemplazarlo con la carpeta local
+      - /app/node_modules
+    depends_on:
+      - server
+    networks:
+      - portfolio_network
+
+networks:
+  portfolio_network:
+    driver: bridge
