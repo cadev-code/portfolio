@@ -1,0 +1,22 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  // remover output para almacenar "generate" dentro de node_modules (problemas de entorno SO)
+  // solución a errores al construir contenedores docker
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Projects {
+  id Int @id @default(autoincrement())
+  name String
+  description String
+  technologies String
+  url_repository String
+  url_livedemo String
+}
