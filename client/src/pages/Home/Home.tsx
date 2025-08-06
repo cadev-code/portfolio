@@ -1,3 +1,9 @@
+import { Main } from './components';
+
 export const Home = () => {
-  return <div>Home</div>;
+  return (
+    <div className="pt-15 w-full">
+      <Main />
+    </div>
+  );
 };

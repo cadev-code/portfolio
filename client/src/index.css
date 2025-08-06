@@ -120,4 +120,19 @@
     @apply bg-background text-foreground;
     font-family: 'JetBrains Mono', monospace;
   }
+
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1; /* Fully visible at the end */
+    }
+    50% {
+      opacity: 0; /* Fully transparent in the middle */
+    }
+  }
+
+  .terminal-cursor::after {
+    content: '▮';
+    animation: blink 1s infinite;
+  }
 }
